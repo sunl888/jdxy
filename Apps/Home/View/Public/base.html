@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <block name="meta"></block>
+    <block name="css"></block>
+    <link href="__PUBLIC__/jd_asset/images/ico.ico" rel="shortcut icon"/>
+    <link href="__PUBLIC__/jd_asset/css/common.css" rel="stylesheet">
+    <style>
+        .nav ul li a:hover {
+            background: url('__PUBLIC__/jd_asset/images/logo_bg.png');
+            color: #fff;
+        }
+    </style>
+    <script src="__PUBLIC__/jd_asset/dist/jquery.js"></script>
+    <block name="js">
+    </block>
+    <title>{$webInfo.WEBNAME} -
+        <block name="title"></block>
+    </title>
+    <script>
+        $(function () {
+            // 搜索
+            var $searchForm = $('#search_form');
+            $('#search_input').keydown(function (event) {
+                if (event.keyCode === 13) {
+                    $searchForm.submit()
+                }
+            });
+            $searchForm.find('.search_icon').click(function(){
+                $searchForm.submit()
+            });
+			console.clear();
+			console.log("%c%s", "color: green; background: yellow; font-size: 24px; font-weight: bold", "机械与电气工程学院欢迎你！！！");
+        });
+    </script>
+</head>
+<body>
+
+<block name="pic"></block>
+<!-- 头部 -->
+<div class="header">
+    <!-- logo部分 -->
+    <div class="logo">
+        <img class="logo_img" src="__PUBLIC__/jd_asset/images/logo.png">
+        <!-- 新增  2017/9/12 17:30-->
+        <form id="search_form" method="GET" action="index.php">
+            <input type="hidden" name="s" value="Home/Search/search">
+            <div class="searchBox">
+                <button>
+                    <img class="icon_search search_icon" src="__PUBLIC__/jd_asset/images/search.png">
+                </button>
+                <input id="search_input" class="searchInput" name="keyword" type="search" placeholder="请输入关键字搜索...">
+            </div>
+        </form>
+        <!-- 新增结束 -->
+    </div>
+    <!-- 导航 -->
+    <div class="nav">
+        <ul>
+            <li>
+                <a href="{:U('Home/Index/index')}">网站首页</a>
+            </li>
+            <foreach name="navList" item="vo">
+                <li>
+                    <a href="{:U($vo['index_template']['url'], ['id'=>$vo['class_id']])}">{$vo.class_name}</a>
+                    <?php if(!empty($vo['child'])):?>
+                    <div class="box">
+                        <?php foreach($vo['child'] as $child):?>
+                        <span><a href="{:U($child['index_template']['url'], ['id'=>$child['class_id']])}">{$child['class_name']}</a></span>
+                        <?php endforeach;?>
+                    </div>
+                    <?php endif;?>
+                </li>
+            </foreach>
+        </ul>
+    </div>
+</div>
+
+<block name="content">
+
+</block>
+<!-- 底部 -->
+<div class="footer">
+    <div class="link">
+        <div class="section">
+            <ul>
+                <h3>机构设置</h3>
+                <volist name="setUrl" id="set" offset="0" limit="8">
+                    <li><a target="_blank" href="{$set.url}">{$set.webname}</a></li>
+                </volist>
+            </ul>
+        </div>
+        <img class="logo_bottom" src="__PUBLIC__/jd_asset/images/logo_bottom.png">
+        <div class="section ship">
+            <ul>
+                <h3>友情链接</h3>
+                <volist name="flinkUrl" id="flink" offset="0" limit="8">
+                    <li><a target="_blank" href="{$flink.url}">{$flink.webname}</a></li>
+                </volist>
+            </ul>
+        </div>
+    </div>
+    <div class="information">
+        <p>
+            版权所有：<span>{$webInfo.COPYRIGHT}</span>
+            地址：<span>{$webInfo.ADDRESS}</span>
+            电话：<span>{$webInfo.PHONE}</span>
+            浏览量：<span>{$visit}</span>
+        </p>
+    </div>
+</div>
+</div>
+</body>
+<script src="__PUBLIC__/jd_asset/js/common.js"></script>
+</html>

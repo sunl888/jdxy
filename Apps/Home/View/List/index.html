@@ -1,0 +1,87 @@
+<extend name="Public:base"/>
+<block name="title">列表</block>
+<block name="meta">
+    <meta http-equiv="x-ua-compatible" content="IE=EmulateIE9">
+    <meta http-equiv="x-ua-compatible" content="IE=EmulateIE8">
+    <meta http-equiv="x-ua-compatible" content="IE=EmulateIE7">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</block>
+<block name="css">
+    <link href="__PUBLIC__/jd_asset/css/list.css" rel="stylesheet" type="text/css">
+    <link href="__PUBLIC__/jd_asset/css/tui.css" rel="stylesheet" type="text/css">
+</block>
+<block name="js">
+    <script src="__PUBLIC__/jd_asset/dist/response.min.js"></script>
+</block>
+<!--[if lt IE 9]>
+<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+<![endif]-->
+<block name="content">
+    <div class="big_img"><img src="__PUBLIC__/jd_asset/images/bd.jpg"></div>
+    <!-- content -->
+    <div class="content">
+        <div class="container">
+            <!-- 左侧导航 -->
+            <div class="left hidden-xs col-lg-3 col-sm-3 col-md-3">
+                <h2 class="title"><?php if(is_null($fatherClass)){echo $class['name'];}else{echo $fatherClass['name'];}?></h2>
+                <ul class="subnav">
+                    <ul>
+                        <foreach name="allClass" item="vo">
+                            <li><a <?php if($class['class_id']==$vo['class_id']) echo 'class="active"';?>
+                                href="{:U($vo['index_template']['url'], ['id'=>$vo['class_id']])}">{$vo['name']}</a>
+                            </li>
+                        </foreach>
+                    </ul>
+                </ul>
+            </div>
+            <!-- 右边列表 -->
+            <div class="right col-xs-12 col-lg-9 col-sm-9 col-md-9">
+                <div class="right_con">
+                    <div class="right_herder">
+                        <h2 class="title">{$class['name']}</h2>
+                        <div class="current">
+                            <ul>
+                                <li><a href="{:U('Home/Index/index')}">首页</a>/</li>
+                                <?php if(is_null($fatherClass)):?>
+                                    <li class="active"><span>
+                                        <?php
+                                        if(is_null($allClass)){
+                                            echo $class['name'];
+                                        }else{
+                                            echo array_first($allClass)['name'];
+                                        }?></span></li>
+                                <?php else:?>
+                                    <li>
+                                        <a href="{:U($fatherClass['index_template']['url'], ['id'=>$fatherClass['class_id']])}">{$fatherClass['name']}</a>/
+                                    </li>
+                                    <li class="active"><span>{$class['name']}</span></li>
+                                <?php endif;?>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="right_main">
+                        <ul class="right_main_text">
+                            <?php if(is_null($list)):?>
+                            <li>暂无数据</li>
+                            <?php else:?>
+                            <foreach name="list" item="vo">
+                                <li>
+                                    <a href="<?php echo U($class['content_template']['url'], ['id'=>$vo['content_id']]);?>"
+                                       title="{$vo['title']}">{$vo['title']}</a>
+                                    <span>{$vo['addtime']}</span>
+                                </li>
+                            </foreach>
+                            <?php endif;?>
+                        </ul>
+                        <!-- 分页的格式 <ul class='pagination' id='pape'>{$page_str}</>-->
+                        <div class="page">
+                            {$page}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>

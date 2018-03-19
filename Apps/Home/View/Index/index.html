@@ -1,0 +1,165 @@
+<extend name="Public:base"/>
+<block name="title">{$title}</block>
+<block name="meta">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</block>
+<block name="css">
+    <link href="__PUBLIC__/jd_asset/css/index.css" rel="stylesheet">
+</block>
+<block name="js">
+    <script src="__PUBLIC__/jd_asset/dist/response.min.js"></script>
+</block>
+
+<block name="pic">
+    <!-- 顶部大图 -->
+    <div class="photo">
+        <!--<span>机械与电气工程学院欢迎你！</span>-->
+        <img src="__PUBLIC__/upload/{$welcome['logo']}">
+    </div>
+    <!-- 漂浮窗口 -->
+    <div id='ad1' class="adver">
+        <button>X</button>
+        <a target="_blank" href="{$xfc['url']}">
+            <img src="__PUBLIC__/upload/{$xfc['logo']}" alt="{$xfc['webname']}">
+        </a>
+    </div>
+</block>
+
+<block name="content">
+    <!-- 轮播 -->
+    <div class="scroll">
+        <!-- 控制按钮 -->
+        <div class="btn">
+            <!-- 焦点按钮 -->
+            <div class="focus">
+            </div>
+            <div class="switch">
+                <div class="left">
+                    <img src="__PUBLIC__/jd_asset/images/scroll_right.png">
+                </div>
+                <div class="right">
+                    <img src="__PUBLIC__/jd_asset/images/scroll_left.png">
+                </div>
+            </div>
+            <!--todo 这里我把imglist移动了位置  孙龙  2017/5/16 21:26-->
+            <!-- 轮播图列表 -->
+            <div class="imglist">
+                <ul>
+                    <?php foreach($bigPics as $bigPic):?>
+                    <li>
+                        <a target="_blank"
+                           href="<?php if(empty($bigPic['url'])){echo 'javascript:;';}else{echo $bigPic['url'];}?>">
+                            <img src="__PUBLIC__/upload/{$bigPic['logo']}">
+                        </a>
+                    </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- 列表内容部分 -->
+    <div class="content">
+        <!-- 学院新闻 -->
+        <div class="news_text">
+            <div class="top">
+                <span>学院新闻</span>
+                <a  class="more" href="{:U('List/index', ['id'=>$hotNews[0]['class_id']])}">更多</a>
+            </div>
+            <div class="item">
+                <ul>
+                    <volist name="hotNews" id="currentNew" limit="5">
+                        <li>
+                            <!-- 日期 -->
+                            <div class="date">
+                                <i>{$currentNew['addtime'] | substr=8,2}</i>
+                                <e>{$currentNew['addtime'] | substr=0,7}</e>
+                            </div>
+                            <a href="{:U('Content/index', ['id'=>$currentNew['content_id']])}">
+                                <p>{$currentNew['title']}</p>
+                            </a>
+                            <span class="date_notice">作者：{$currentNew['author']}</span>
+                        </li>
+                    </volist>
+                </ul>
+            </div>
+        </div>
+        <!-- 新闻轮播 -->
+        <div class="news_text pic">
+            <div class="pic_btn">
+                <div class="circle">
+                </div>
+            </div>
+            <ul>
+                <?php
+                    foreach($imgNews as $iNew):
+                ?>
+                <li>
+                    <div class="top">
+					 <!--<a href="<?php if(!empty($iNew['url'])){echo $iNew['url'];}else{echo 'javascript:;';}?>">
+                            <img src="<?php if(!empty($iNew['picurl'])){echo '__PUBLIC__/upload/'.$iNew['picurl'];}?>">
+                        </a>-->
+                        <a target="_blank" href="{:U('Content/index', ['id'=>$iNew['content_id']])}">
+                            <img src="<?php if(!empty($iNew['picurl'])){echo '__PUBLIC__/upload/'.$iNew['picurl'];}?>">
+                        </a>
+                    </div>
+                    <div class="item item_pic">
+                        <h2><?php echo $iNew['title']?></h2>
+                        <p>作者：<span><?php echo $iNew['author'];?></span></p>
+                        <font>
+                            <?php echo $iNew['description'];?>
+                        </font>
+                        <p><a target="_blank" href="{:U('Content/index', ['id'=>$iNew['content_id']])}">阅读更多 >></a></p>
+                    </div>
+                </li>
+                <?php endforeach;?>
+            </ul>
+        </div>
+        <!-- 通知公告 -->
+        <div class="news_text notice">
+            <div class="top">
+                <span>通知公告</span>
+                <a class="more" href="{:U('List/index', ['id'=>$noticeList[0]['class_id']])}">更多</a>
+            </div>
+            <div class="item">
+                <ul>
+                    <volist name="noticeList" id="notic" empty="没有数据">
+                        <li>
+                            <!-- 日期 -->
+                            <div class="date">
+                                <img src="__PUBLIC__/jd_asset/images/notice.png">
+                            </div>
+                            <a href="{:U($noticeClass['content_template']['url'], ['id'=>$notic['content_id']])}">
+                                <!--这里可以修改通知公告的颜色-->
+                                <p style="color: {$notic.title_color};">{$notic['title']}</p>
+                            </a>
+                            <span class="date_notice">{$notic.addtime}</span>
+                        </li>
+                    </volist>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- 透明层 -->
+    <div class="transparent">
+        <div class="gear">
+            <img class="small" src="__PUBLIC__/jd_asset/images/gear.png" alt="">
+            <img class="big" src="__PUBLIC__/jd_asset/images/gear.png" alt="">
+        </div>
+        <div class="text">
+            <img src="__PUBLIC__/jd_asset/images/text.png" alt="">
+        </div>
+    </div>
+    <!-- 图片链接 -->
+    <div class="imgLink">
+        <ul>
+            <volist name="faculty" id="fac" limit="10">
+                <li>
+                    <a target="_blank" href="{$fac.url}">
+                        <img src="__PUBLIC__/upload/{$fac.logo}" alt="">
+                    </a>
+                </li>
+            </volist>
+        </ul>
+    </div>
+    <script src="__PUBLIC__/jd_asset/js/index.js"></script>
+</block>

@@ -1,0 +1,141 @@
+.content{
+	padding: 40px 0;
+	overflow: hidden;
+}
+/*左边*/
+.content .left{
+	float: left;
+    word-wrap: break-word;
+    background: #fff;
+    padding: 0;
+    margin-top: 0;
+}
+.content .left .title{
+	margin: 0;
+    padding: 10px;
+    color: #fff;
+    font-size: 20px;
+    background: #095192;
+    border-bottom: 1px solid #f5f5f5;
+}
+.subnav li{
+	background: #fff;
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 0;
+    height: 50px;
+    line-height: 50px;
+}
+.subnav li a{
+	text-indent: 35px;
+    font-size: 16px;
+    color: #333;
+    font-weight: normal;
+    display: block;
+}
+.subnav li a:hover{
+	text-decoration: none;
+	color: #095192;
+	background: #ebeced;
+}
+.subnav li .active{
+	color: #095192;
+	background: #ebeced;
+}
+/*右边*/
+.content .right{
+	float: right;
+    word-wrap: break-word;
+}
+.right_con{
+	background: #fff;
+	padding: 0 15px;
+}
+.content .right_herder{
+	height: 50px;
+    border-bottom: 3px solid #095192;
+    line-height: 50px;
+}
+.content .right .title{
+	font-size: 20px;
+	color: #333;
+	padding: 0 15px;
+	float: left;
+}
+/*当前位置*/
+.content  .current{
+	overflow: hidden;
+	float: right;
+	font-size: 14px;
+}
+.content  .current ul li {
+	float: left;
+}
+.content  .current ul li a{
+	padding: 0 5px;
+	color: #999;
+}
+.content  .current ul li a:hover{
+    color: #095192;
+    text-decoration: none;
+}
+.content  .current ul li span{
+    padding: 0 5px;
+}
+/*右边列表*/
+.right .right_main {
+    background: #fff;
+    padding: 15px 25px 15px;
+    min-height: 444px;
+}
+.right .right_main .right_main_text{
+	padding-left: 20px;
+}
+.right_main .right_main_text li {
+    display: block;
+    font-size: 14px;
+    position: relative
+}
+.right_main .right_main_text li a {
+    color: #666;
+    display: block;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    padding-right: 75px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.right_main .right_main_text li a:hover{
+	color: #095192;
+}
+.right_main .right_main_text li span {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    color: #999;
+    font-size: 12px;
+}
+
+
+/*媒体查询*/
+@media (min-width: 1200px){
+	.container {
+   		width: 1170px;
+	}
+}
+@media (max-width: 1199px) and (min-width: 1001px){
+	.container {
+    	width: 970px;
+	}
+}
+@media (max-width: 1000px) and (min-width: 768px){
+	.container {
+    	width: 750px;
+	}
+}
+@media (max-width: 768px) and (min-width: 430px){
+	.container {
+	    width: 100%;
+	}
+	.container .right .current{font-size: 12px;}
+}

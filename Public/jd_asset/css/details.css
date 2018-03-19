@@ -1,0 +1,61 @@
+/*文章*/
+.content {
+    padding: 40px 0;
+    overflow: hidden;
+}
+.content_body {
+    background-color: #fff;
+    padding: 0 35px 35px 35px;
+	/*2017/6/25 孙龙 修改样式*/
+	width: 98%;
+	margin-left: 10px;
+}
+.content_title{
+    background-color: #fff;
+    padding: 17px 15px;
+    border-bottom: 1px solid #eee;
+}
+/*当前位置*/
+.content .current {
+    overflow: hidden;
+    font-size: 14px
+}
+.current ul li {
+    float: left;
+}
+.current ul li a {
+    padding: 0 5px;
+    color: #999;
+}
+.content  .current ul li a:hover{
+    color: #095192;
+    text-decoration: none;
+}
+.current ul li span{
+    padding: 0 5px;
+}
+/*2017/6/25 孙龙 updated 文章宽度改窄一点,这样红头文件显示稍微好看一点*/
+.content_body .content_main {
+    padding: 20px 80px;
+}
+.content_body .content_main .title {
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #eee;
+}
+.content_body .content_main .title h1{
+	padding: 10px 0;
+    color: #333333;
+    font-size: 24px;
+}
+.content_body .content_main .title span {
+    color: #666;
+    /*margin-right: 10px;*/
+}
+.content_main .content_article{
+	padding: 15px 0;
+}
+.content_main .content_article p{
+	/*text-indent: 24.0pt;*/
+    line-height: 30px;
+}
